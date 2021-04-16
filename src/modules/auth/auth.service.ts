@@ -3,6 +3,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 
 import { JwtService } from '@nestjs/jwt';
 import { UserService } from '../user/user.service';
+import User from '../../database/entities/user.entity';
 
 @Injectable()
 export class AuthService {
@@ -12,14 +13,10 @@ export class AuthService {
   ) {}
 
   public async getAuthenticatedUser(email: string, plainTextPassword: string) {
-    try {
-      const user = await this.userService.findOne(email);
-      // await this.verifyPassword(plainTextPassword, user.password);
-      user.password = undefined;
-      return user;
-    } catch (error) {
-      throw new BadRequestException();
-    }
+    const user = await this.userService.findByEmail(email);
+    await this.verifyPassword(plainTextPassword, user.password);
+    delete user.password;
+    return user;
   }
 
   private async verifyPassword(
@@ -35,10 +32,13 @@ export class AuthService {
     }
   }
 
-  async login(user: any) {
-    const payload = user;
+  async login(user: User) {
     return {
-      access_token: this.jwtService.sign(payload),
+      access_token: this.jwtService.sign({
+        id: user.id,
+        name: user.name,
+        email: user.email,
+      }),
     };
   }
 }
