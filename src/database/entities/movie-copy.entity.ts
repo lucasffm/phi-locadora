@@ -15,6 +15,9 @@ class MovieCopy {
   @PrimaryGeneratedColumn()
   public id?: number;
 
+  @Column({ default: true })
+  available: boolean;
+
   @CreateDateColumn()
   createdAt: Date;
 

@@ -13,7 +13,7 @@ import User from './user.entity';
 @Entity({ name: 'movie_rent' })
 class MovieRent {
   @PrimaryGeneratedColumn()
-  public id?: number;
+  id?: number;
 
   @CreateDateColumn()
   rentDate: Date;
@@ -21,7 +21,7 @@ class MovieRent {
   @Column({ type: 'date' })
   returnDate: Date;
 
-  @Column({ type: 'date' })
+  @Column({ type: 'date', nullable: true })
   dateReturned: Date;
 
   @ManyToOne(() => MovieCopy, (movieCP) => movieCP.rents)

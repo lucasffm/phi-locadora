@@ -11,17 +11,18 @@ import { IsEmail } from 'class-validator';
 
 import * as bcrypt from 'bcrypt';
 import MovieRent from './movie-rent.entity';
+import { Exclude } from 'class-transformer';
 
 @Entity({ name: 'user' })
 class User {
   @PrimaryGeneratedColumn()
-  public id?: number;
+  id?: number;
 
   @Column({
     type: 'varchar',
     length: 100,
   })
-  public name: string;
+  name: string;
 
   @IsEmail({}, { message: 'Email inválido' })
   @Column({
@@ -30,10 +31,11 @@ class User {
     nullable: false,
     length: 100,
   })
-  public email: string;
+  email: string;
 
+  @Exclude()
   @Column({ type: 'varchar', nullable: false, length: 255 })
-  public password: string;
+  password: string;
 
   @CreateDateColumn()
   createdAt: Date;
