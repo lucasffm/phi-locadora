@@ -32,6 +32,20 @@
 $ npm install
 ```
 
+## Before Start
+
+```bash
+
+# Edit .env file
+Rename .env.example to .env and edit with database infos
+
+# Create Database
+Create a database with the same name informed in .env
+
+# Run migrations
+$ npm run typeorm migration:run
+```
+
 ## Running the app
 
 ```bash
@@ -43,6 +57,11 @@ $ npm run start:dev
 
 # production mode
 $ npm run start:prod
+
+
+# Server address  after start:
+Server address: http://localhost:3000
+Swagger address: http://localhost:3000/docs
 ```
 
 ## Test
