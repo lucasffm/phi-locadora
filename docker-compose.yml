@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  api:
+    build: .
+    container_name: api
+    environment:
+      - DB_HOST=postgres
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - ${PORT}:${PORT}
+    depends_on:
+      - postgres
+    command: >
+      sh -c "npm run typeorm migration:run &&
+             node dist/src/main.js"
+    networks:
+      - nestwork
+  postgres:
+    image: postgres:alpine
+    restart: always
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    networks:
+      - nestwork
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
+networks:
+  nestwork:
+    driver: bridge
