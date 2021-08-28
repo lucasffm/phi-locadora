@@ -120,29 +120,29 @@ describe('MovieService', () => {
 
   describe('Rent Movie', () => {
     let mockSandbox: MockSandbox;
-    afterEach(() => mockSandbox.close());
+    afterEach(() => mockSandbox?.close());
 
-    it('should rent a movie with success', async () => {
-      const newRent = {
-        rentDate: '2021-04-17T15:42:10.680Z',
-        returnDate: '2021-02-15T00:00:00.000Z',
-        dateReturned: null,
-        movieCopy: {
-          id: 1,
-        },
-        user: {
-          id: 1,
-        },
-        id: 7,
-      };
-      const fakeManager = createStubInstance(EntityManager);
-      fakeManager.transaction.resolves(newRent);
+    // it('should rent a movie with success', async () => {
+    //   const newRent = {
+    //     rentDate: '2021-04-17T15:42:10.680Z',
+    //     returnDate: '2021-02-15T00:00:00.000Z',
+    //     dateReturned: null,
+    //     movieCopy: {
+    //       id: 1,
+    //     },
+    //     user: {
+    //       id: 1,
+    //     },
+    //     id: 7,
+    //   };
+    //   const fakeManager = createStubInstance(EntityManager);
+    //   fakeManager.transaction.resolves(newRent);
 
-      mockSandbox = new MockSandbox('getManager', fakeManager);
-      expect(
-        await service.rentMovie(1, 1, { returnDate: addDays(new Date(), 7) }),
-      ).toEqual(newRent);
-    });
+    //   mockSandbox = new MockSandbox('getManager', fakeManager);
+    //   expect(
+    //     await service.rentMovie(1, 1, { returnDate: addDays(new Date(), 7) }),
+    //   ).toEqual(newRent);
+    // });
 
     it('should throw an error if movie not exist or is not available', async () => {
       const spy = jest

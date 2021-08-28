@@ -32,7 +32,6 @@ export class MovieService {
     const movie = await this.movieRepository.findAvailableMovieById(movieId);
     if (!movie)
       throw new NotFoundException('Filme não encontrado ou não disponível');
-
     return getManager().transaction(async (transactionalEntityManager) => {
       const [movieCopy] = movie.copies;
       const movieRent = this.rentRepository.create({
