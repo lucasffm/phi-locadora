@@ -1,4 +1,4 @@
-name: asdas
+name: Deploy Locadora
 
 on:
   push:
