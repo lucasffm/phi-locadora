@@ -4,17 +4,23 @@ services:
     build: .
     container_name: api
     environment:
+      - JWT_SECRET=SUPERSECRETO
       - DB_HOST=postgres
+      - DB_NAME=${DB_NAME}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_PORT=5432
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
+      - /usr/src/app/dist
     ports:
       - ${PORT}:${PORT}
     depends_on:
       - postgres
     command: >
       sh -c "npm run typeorm migration:run &&
-             node dist/src/main.js"
+             npm run start:prod"
     networks:
       - nestwork
   postgres:
@@ -33,12 +39,12 @@ services:
     container_name: nginx_proxy
     restart: unless-stopped
     volumes:
-     - ./proxy.conf:/etc/nginx/conf.d/default.conf
-    ports: 
+      - ./proxy.conf:/etc/nginx/conf.d/default.conf
+    ports:
       - 80:80
-    depends_on: 
+    depends_on:
       - api
-    networks: 
+    networks:
       - nestwork
 
 volumes:
