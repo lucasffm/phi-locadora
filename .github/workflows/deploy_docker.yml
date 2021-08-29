@@ -50,7 +50,7 @@ jobs:
             DB_NAME=${{secrets.DB_NAME}}
             VIRTUAL_HOST=${{secrets.VIRTUAL_HOST}}
             " > .env
-            docker-compose up -d --build --force-recreate
+            docker-compose up -d --build
             
       
 
