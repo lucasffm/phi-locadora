@@ -61,4 +61,4 @@ jobs:
             VIRTUAL_HOST=${{secrets.VIRTUAL_HOST}}
             " > .env
             echo "Making docker-compose"
-            docker-compose up --build --remove-orphans --force-recreate
+            docker-compose up -d --build --remove-orphans --force-recreate
