@@ -19,7 +19,7 @@ describe('AppController', () => {
       expect(appController.getHello()).toEqual({
         message: 'Phi Locadora',
         docs: `http://${process.env.VIRTUAL_HOST}/docs`,
-        version: 1.0
+        version: 1.1
       });
     });
   });
