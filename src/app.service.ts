@@ -6,7 +6,7 @@ export class AppService {
     return {
       message: 'Phi Locadora',
       docs: `http://${process.env.VIRTUAL_HOST}/docs`,
-      version: 1.2,
+      version: 1.3,
     };
   }
 }
