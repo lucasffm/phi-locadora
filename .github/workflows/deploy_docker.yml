@@ -22,7 +22,7 @@ jobs:
   #     - run: npm run test
 
   build:
-    needs: test
+    # needs: test
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout source code
