@@ -42,8 +42,24 @@ jobs:
             DB_NAME=${{secrets.DB_NAME}}
             VIRTUAL_HOST=${{secrets.VIRTUAL_HOST}}
           script: |
-            chmod +x ./deploy.sh
-            ./deploy.sh
+            FOLDER=phi-locadora
+            if test ! -d "$FOLDER"; then
+              echo "$FOLDER not exists, clone project!!"
+              git clone git@github.com:lucasffm/phi-locadora.git
+            fi
+
+            cd phi-locadora
+            echo "Pulling from github"
+            git pull
+
+            FILE=.env
+            if test -f "$FILE"; then
+                echo "$FILE exists."
+                rm .env
+            fi
+
+            chmod +x ./make_env.sh
+            ./make_env.sh
             
       
 
