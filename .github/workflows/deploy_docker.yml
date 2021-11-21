@@ -38,7 +38,7 @@ jobs:
         uses: actions/checkout@v2
       
       - name: Docker down
-        run: docker-compose down
+        run: sudo docker-compose down
 
       - name: Docker up
-        run: docker-compose up -d --build --remove-orphans --force-recreate
+        run: sudo docker-compose up -d --build --remove-orphans --force-recreate
