@@ -18,8 +18,17 @@ jobs:
         with:
           node-version: ${{matrix.node-version}}
           cache: 'npm'
+          
+      - name: Install dependencies
       - run: npm i
+
+      - name: Run tests
       - run: npm run test
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+            token: ${{ secrets.CODECOV_TOKEN }}
   build:
     needs: test
     runs-on: self-hosted    
