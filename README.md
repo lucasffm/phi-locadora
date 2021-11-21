@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/lucasffm/phi-locadora/branch/main/graph/badge.svg?token=5XMK22T18S)](https://codecov.io/gh/lucasffm/phi-locadora)
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
 </p>
