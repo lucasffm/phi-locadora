@@ -31,7 +31,7 @@ jobs:
           node-version: 14
           cache: 'npm'
       - run: npm ci
-      - run: npm build
+      - run: npm run build
 
   deploy:
     runs-on: ubuntu-latest
