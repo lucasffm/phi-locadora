@@ -4,7 +4,6 @@ import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 const env = dotenv.parse('../../');
 dotenv.config(env);
 
-console.log(env);
 module.exports = {
   type: 'postgres',
   host: process.env.DB_HOST,
