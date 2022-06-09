@@ -14,8 +14,10 @@ jobs:
         with:
           node-version: 14
           cache: 'npm'
-      - run: npm ci
-      - run: npm run test
+      - name: Install dependencies
+        run: npm ci
+      - name: Unit tests
+        run: npm run test
       - uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
@@ -31,9 +33,21 @@ jobs:
         with:
           node-version: 14
           cache: 'npm'
-      - run: npm ci
-      - run: npm run build
-      - run: npm run typeorm migration:run
+      - name: Install dependencies
+        run: npm ci
+      - name: Build App
+        run: npm run build
+      - name: Migrations
+        run: npm run typeorm migration:run
+        env:
+          DB_HOST: ${{secrets.DB_HOST}}
+          DB_USERNAME: ${{secrets.DB_USERNAME}}
+          DB_PASSWORD: ${{secrets.DB_PASSWORD}}
+          DB_PORT: ${{secrets.DB_PORT}}
+          DB_NAME: ${{secrets.DB_NAME}}
+          VIRTUAL_HOST: ${{secrets.VIRTUAL_HOST}}
+          PORT: ${{secrets.PORT}}
+          JWT_SECRET: ${{secrets.JWT_SECRET}}
 
   deploy:
     needs: build
