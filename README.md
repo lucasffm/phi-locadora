@@ -1,4 +1,4 @@
-[![codecov](https://codecov.io/gh/lucasffm/phi-locadora/branch/main/graph/badge.svg?token=5XMK22T18S)](https://codecov.io/gh/lucasffm/phi-locadora)
+
 
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
@@ -7,8 +7,11 @@
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
+  <p align="center">Test here: <a href="https://phi-locadora.herokuapp.com/" target="_blank">https://phi-locadora.herokuapp.com/</a> </p>
+  <p align="center">
   <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
+  <p align="center">
+<a href="https://codecov.io/gh/lucasffm/phi-locadora" target="_blank"><img src="https://codecov.io/gh/lucasffm/phi-locadora/branch/main/graph/badge.svg?token=5XMK22T18S" alt="Codecov" /></a>
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
