@@ -46,7 +46,6 @@ jobs:
           DB_PORT: ${{secrets.DB_PORT}}
           DB_NAME: ${{secrets.DB_NAME}}
           VIRTUAL_HOST: ${{secrets.VIRTUAL_HOST}}
-          PORT: ${{secrets.PORT}}
           JWT_SECRET: ${{secrets.JWT_SECRET}}
 
   deploy:
@@ -66,6 +65,5 @@ jobs:
           HD_DB_PORT: ${{secrets.DB_PORT}}
           HD_DB_NAME: ${{secrets.DB_NAME}}
           HD_VIRTUAL_HOST: ${{secrets.VIRTUAL_HOST}}
-          HD_PORT: ${{secrets.PORT}}
           HD_JWT_SECRET: ${{secrets.JWT_SECRET}}
           
