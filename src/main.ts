@@ -7,7 +7,6 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe());
-  console.log(process.env.JWT_SECRET);
 
   const config = new DocumentBuilder()
     .setTitle('PHI Locadora')
@@ -18,7 +17,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, document);
 
-  await app.listen(3000);
+  await app.listen(process.env.PORT || 3000);
   Logger.log('Server listen on: http://localhost:3000');
   Logger.log('Swagger address: http://localhost:3000/docs');
 }
