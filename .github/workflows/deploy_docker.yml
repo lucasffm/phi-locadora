@@ -8,43 +8,44 @@ on:
 jobs:
   test:
     runs-on: ubuntu-20.04
-    strategy:
-      matrix:
-        node-version: [12.x]
     steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.JS ${{matrix.node-version}}
-        uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: ${{matrix.node-version}}
+          node-version: 14
           cache: 'npm'
-      - run: npm i
+      - run: npm ci
       - run: npm run test
-      - uses: codecov/codecov-action@v2
+      - uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./coverage/clover.xml
           directory: ./coverage
-  build:
-    needs: test
-    runs-on: self-hosted    
-    steps:
-      - name: Checkout source code
-        uses: actions/checkout@v2
-      
-      - name: Create env file
-        run: |
-          cat << EOF > .env
-          PORT=${{ secrets.PORT }}
-          JWT_SECRET=${{ secrets.JWT_SECRET }}
-          DB_HOST=${{ secrets.DB_HOST }}
-          DB_USERNAME=${{ secrets.DB_USERNAME }}
-          DB_PASSWORD=${{ secrets.DB_PASSWORD }}
-          DB_PORT=${{ secrets.DB_PORT }}
-          DB_NAME=${{ secrets.DB_NAME }}
-          VIRTUAL_HOST=${{ secrets.VIRTUAL_HOST }}
-          DEFAULT_HOST=${{ secrets.DEFAULT_HOST }}
-          EOF
 
-      - name: Docker up
-        run: sudo docker-compose down && sudo docker-compose up -d --build --remove-orphans --force-recreate
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14
+          cache: 'npm'
+      - run: npm ci
+      - run: npm build
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+          heroku_email: ${{secrets.HEROKU_MAIL}}
+        env:
+          DB_HOST: ${{secrets.DB_HOST}}
+          DB_USERNAME: ${{secrets.DB_USERNAME}}
+          DB_PASSWORD: ${{secrets.DB_PASSWORD}}
+          DB_PORT: ${{secrets.DB_PORT}}
+          DB_NAME: ${{secrets.DB_NAME}}
+          
