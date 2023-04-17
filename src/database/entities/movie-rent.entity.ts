@@ -4,10 +4,8 @@ import {
   Entity,
   ManyToOne,
   PrimaryGeneratedColumn,
-  UpdateDateColumn,
 } from 'typeorm';
 import MovieCopy from './movie-copy.entity';
-import Movie from './movie.entity';
 import User from './user.entity';
 
 @Entity({ name: 'movie_rent' })

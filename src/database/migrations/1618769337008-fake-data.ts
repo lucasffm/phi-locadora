@@ -34,5 +34,6 @@ export class fakeData1618769337008 implements MigrationInterface {
         `);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   public async down(queryRunner: QueryRunner): Promise<void> {}
 }

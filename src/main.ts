@@ -7,7 +7,6 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe());
-  console.log(process.env.JWT_SECRET);
 
   const config = new DocumentBuilder()
     .setTitle('PHI Locadora')

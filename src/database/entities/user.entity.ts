@@ -1,3 +1,4 @@
+import { IsEmail } from 'class-validator';
 import {
   BeforeInsert,
   Column,
@@ -7,11 +8,10 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { IsEmail } from 'class-validator';
 
 import * as bcrypt from 'bcrypt';
-import MovieRent from './movie-rent.entity';
 import { Exclude } from 'class-transformer';
+import MovieRent from './movie-rent.entity';
 
 @Entity({ name: 'user' })
 class User {

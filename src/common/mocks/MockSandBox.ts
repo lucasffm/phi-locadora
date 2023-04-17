@@ -1,5 +1,5 @@
-import * as typeorm from 'typeorm';
 import { createSandbox, SinonSandbox } from 'sinon';
+import * as typeorm from 'typeorm';
 
 export class MockSandbox {
   sandbox: SinonSandbox;
