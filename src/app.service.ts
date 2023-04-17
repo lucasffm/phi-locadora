@@ -5,8 +5,8 @@ export class AppService {
   getHello(): any {
     return {
       message: 'Phi Locadora',
-      docs: `http://${process.env.VIRTUAL_HOST}/docs`,
-      version: 1.2,
+      docs: `${process.env.VIRTUAL_HOST}/docs`,
+      version: '1.0.0',
     };
   }
 }
